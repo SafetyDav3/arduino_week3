@@ -31,6 +31,11 @@ const byte EWred = 7;
 const byte NSwalk = 9;
 const byte EWwalk = 8;
 
+// Input for the potentiometer
+int potPin = A0;
+int potValue = 0;
+int potInput = 0;
+
 void setup()
 {
   for (byte a = 2; a < 10; a++) // another cool programming tool to make pins 2-7 outputs all at once
@@ -103,12 +108,14 @@ void allRed()
 // turn the NS light from green to yellow to red
 void northSouthSequence()
 {
+  int potValue = analogRead(potPin); // read the potentiometer
+  int potTime = map(potValue, 0, 1023, 2000, 8000); // map it to a time
   digitalWrite(NSred, LOW); // turn off red first
   digitalWrite(NSgreen, HIGH);
   digitalWrite(NSwalk, HIGH);
-  delay(2000);
+  delay(potTime);
   digitalWrite(NSwalk, LOW);
-  delay(2000);
+  delay(potTime / 2);
   digitalWrite(NSgreen, LOW);   // make sure it's turned off first!
   digitalWrite(NSyellow, HIGH); // switch to yellow
   delay(2000);                  // for two seconds
@@ -120,12 +127,14 @@ void northSouthSequence()
 // turn the EW light from green to yellow to red
 void eastWestSequence()
 {
+  potInput = analogRead(potPin); // read the potentiometer
+  potValue = map(potInput, 0, 1023, 2000, 8000); // map it to a time
   digitalWrite(EWred, LOW); // turn off red first
   digitalWrite(EWgreen, HIGH);
   digitalWrite(EWwalk, HIGH);
-  delay(2000);
+  delay(potValue);              // for two seconds
   digitalWrite(EWwalk, LOW);
-  delay(2000);
+  delay(potValue / 2);          // Wait for half the green light time
   digitalWrite(EWgreen, LOW);   // make sure it's turned off first!
   digitalWrite(EWyellow, HIGH); // switch to yellow
   delay(2000);                  // for two seconds
