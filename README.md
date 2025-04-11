@@ -13,3 +13,7 @@ Microcontroller Projects
 ## Traffic Light Circuit with Potentiometer for Timing
 
 ![alt text](img/image-2.png)
+
+## Rough Flowchart for Traffic Light Circuit with Potentiometer for Timing
+
+![alt text](img/traffic-light-flow-chart-with-pot.png)
